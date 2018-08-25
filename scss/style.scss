@@ -1,0 +1,547 @@
+/*
+	Theme Name: andon
+	Author: andon
+*/
+
+@import "reset";
+@import "setting";
+@import "mediaquery";
+
+
+/* html element 62.5% font-size for REM use */
+html {
+	font-size:62.5%;
+	background:$maincolor;
+
+	@include mq(sm){
+		font-size: 50%;
+	}
+}
+body {
+	font:400 18px/1.6 "acumin-pro", "kozuka-gothic-pro", sans-serif;
+	color:#444;
+}
+
+/*------------------------------------*\
+    STRUCTURE
+\*------------------------------------*/
+
+/* wrapper */
+.wrapper {
+	position:relative;
+	min-width: 1050px;
+	width: 100%;
+	margin:0 auto;
+
+	@include mq() {
+		min-width:0;
+	}
+}
+
+
+#header {
+	font-size: 1.9rem;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height:120px;
+	margin: 0 auto;
+	line-height: 1;
+	z-index: 999;
+
+	.inner {
+		position: relative;
+		height: 100%;
+	}
+}
+
+#nav {
+	position: fixed;
+	background: $maincolor;
+	width: 100%;
+	height:100%;
+	text-align: center;
+	padding: 80px 0 0;
+	z-index:10;
+	visibility: hidden;
+	opacity: 0;
+
+	@extend .easing;
+
+	ul {
+		list-style: none;
+		display: flex;
+		justify-content: center;
+		align-items:center;
+		flex-flow: column wrap;
+		top:0;
+		right: 0;
+		font-size: 2rem;
+
+		li {
+			display: block;
+			position: relative;
+			text-align: center;
+
+			a {
+				width: 100%;
+				display: block;
+				color: #fff;
+				padding: 18px 0;
+			}
+		}
+	}
+}
+
+/* Toggle Button */
+#toggle {
+	display: block;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	width: 34px;
+	height: 36px;
+	cursor: pointer;
+	z-index: 101;
+
+	@extend .easing;
+
+	div{
+		position: relative;
+	}
+
+	span {
+		display: block;
+		position: absolute;
+		height: 2px;
+		width: 100%;
+		background: #fff;
+		left: 0;
+		@extend .easing;
+
+		&:nth-child(1) {
+			top: 0;
+		}
+
+		&:nth-child(2) {
+			top: 10px;
+		}
+
+		&:nth-child(3) {
+			top: 20px;
+		}
+	}
+}
+
+.active {
+	#toggle {
+		span {
+			&:nth-child(1) {
+				top: 10px;
+				-webkit-transform: rotate(45deg);
+				-moz-transform: rotate(45deg);
+				transform: rotate(45deg);
+			}
+
+			&:nth-child(2) {
+				width: 0;
+				left: 50%;
+			}
+
+			&:nth-child(3) {
+				top: 10px;
+				-webkit-transform: rotate(-45deg);
+				-moz-transform: rotate(-45deg);
+				transform: rotate(-45deg);
+			}
+		}
+	}
+
+	#nav{
+		/* #nav top + #spHead height */
+		visibility: visible;
+		opacity: 1;
+	}
+}
+
+main{
+	&.under{
+		max-width: 1050px;
+		width: 100%;
+		height: auto;
+		margin: 0 auto;
+	}
+}
+
+.mv{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100vh;
+
+	.logo {
+		width: 180px;
+		height: auto;
+		margin: 0 auto;
+	}
+}
+
+.under {
+	.mv{
+		height: 500px;
+	}
+}
+
+.category{
+	.mv{
+		height: 500px;
+	}
+}
+
+.intro{
+	width: 100%;
+	margin: 150px 0 300px;
+
+	@include mq(){
+		padding: 0 20px;
+	}
+
+	&__txt{
+		width: 480px;
+		height: auto;
+		margin: 0 auto;
+
+		@include mq(){
+			width: 100%;
+			max-width: 480px;
+		}
+	}
+}
+
+.service{
+	position: relative;
+	width: 100%;
+
+	.content {
+		position: relative;
+		width: 100%;
+		height: auto;
+
+		> .works {
+			display: flex;
+			//justify-content: space-between;
+			align-items:center;
+			flex-flow: row wrap;
+				
+			> div{
+				display: inline-block;
+				width: 25%;
+				height: auto;
+
+				@include mq(){
+					width: 50%;
+				}
+
+				//@include mq(sm){
+				//	width: 100%;
+				//}
+
+				> a{
+					display: block;
+					width: 100%;
+					height: 100%;
+
+					> figure{
+						position: relative;
+						overflow: hidden;
+						width: 100%;
+
+						> img{
+							-webkit-transform: scale(1);
+							transform: scale(1);
+							@extend .easing;
+						}
+
+						> figcaption {
+							position: absolute;
+							top: 0;
+							left: 0;
+							z-index: 2;
+							width: 100%;
+							height: 100%;
+							background: rgba($maincolor,.8);
+							opacity: 0;
+							color:#fff;
+							font-weight: 700;
+							text-align: center;
+
+							@extend .easing;
+
+						
+							div{
+								position: relative;
+								display: flex;
+								justify-content: center;
+								align-items:center;
+								width: 100%;
+								height: 100%;
+								padding:0 20px;
+
+								.cat__name{
+									position: absolute;
+									top:15px;
+									left: 15px;
+									font-size: 1.8rem;
+									font-weight: 400;
+								}
+
+								.date{
+									position: absolute;
+									left: 15px;
+									bottom: 15px;
+									font-size: 1.2rem;
+									font-weight: 400;
+								}
+							}
+						}
+
+						&:hover{
+
+							img{
+								-webkit-transform: scale(1.1);
+								transform: scale(1.1);
+							}
+
+							figcaption{
+								opacity: 1;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.cat__title{
+	color: #fff;
+	text-align: center;
+	margin: 0 0 80px;
+}
+
+.footer{
+	width: 100%;
+	height: auto;
+
+	> div{
+		&:first-of-type{
+			width: 100%;
+			max-width: 1050px;
+			height: auto;
+			margin: 0 auto;
+			padding: 300px 0 20px;
+
+			@include mq(){
+				padding: 100px 0 10px;
+			}
+		}
+
+		address{
+			display: flex;
+			justify-content: space-between;
+			align-items:center;
+			width: 80%;
+			font-style: normal;
+			margin: 0 auto 120px;
+
+			@include mq(){
+				justify-content: center;
+				flex-flow: column wrap;
+				padding: 0 20px;
+			}
+
+			@include mq(sm){
+				width: 100%;
+			}
+
+			div{
+				display: inline-block;
+				width: 45%;
+				height: auto;
+				color: #fff;
+				border: 1px solid #fff;
+				padding: 30px;
+
+				@include mq(){
+					width: 100%;
+					margin: 0 auto;
+				}
+
+				&:first-of-type{
+					@include mq(){
+						margin: 0 auto 40px;
+					}
+				}
+
+				h3{
+					font-size: 1.8rem;
+					line-height: 2;
+				}
+
+				p{
+					font-size: 1.2rem;
+
+					a{
+						color:#fff;
+					}
+				}
+			}
+		}
+
+		.copyright{
+			font-size: 1.6rem;
+			color:#fff;
+			text-align: center;
+		}
+	}
+
+	#map{
+		width: 100%;
+		height: 350px;
+	}
+	
+}
+
+
+/*------------------------------------*\
+    PAGES
+\*------------------------------------*/
+.single{
+	color:#fff;
+
+	.wrapper{
+		min-width: 0;
+
+		article{
+
+			h1{
+				font-size: 2rem;
+				margin: 40px 0 20px;
+			}
+
+			p{
+				font-size: 1.6rem;
+			}
+		}
+	}
+
+	main{
+		@include mq(){
+			padding:0 20px;
+		}
+	}
+}
+
+.contact{
+	color: #fff;
+
+	@include mq(){
+		position: 0 20px;
+	}
+
+	.wrapper{
+
+		h1{
+			text-align: center;
+			margin: 0 0 80px;
+		}
+	}
+
+	&__area{
+		width: 100%;
+		max-width: 1000px;
+		height: auto;
+		margin: 0 auto;
+
+		table{
+			width: 100%;
+			border-collapse: collapse;
+			margin: 0 0 60px;
+
+			th{
+				width: 40%;
+				padding: 10px 0;
+				text-align: left;
+				vertical-align: top;
+
+				@include mq(){
+					display: block;
+					width: 100%;
+					padding: 10px 0 0;
+				}
+			}
+
+			td{
+				width: 60%;
+				padding: 15px 0;
+
+				@include mq(){
+					display: block;
+					width: 100%;
+					padding: 15px 0 20px;
+				}
+
+				.wpcf7-form-control{
+					width: 100%;
+					border: none;
+					outline:0;
+					padding:5px 10px;
+
+					&:focus{
+						outline:0;
+					}
+				}
+			}
+
+			+ p{
+				display: block;
+			}
+		}
+
+		.wpcf7-submit{
+			display: block;
+			width: 100%;
+			max-width: 150px;
+			height: 60px;
+			border:none;
+			outline:0;
+			background: #fff;
+			color: $maincolor;
+			font-size: 2rem;
+			font-weight: 700;
+			margin: 0 auto;
+
+			@extend .easing;
+
+			&:hover{
+				background: $maincolor;
+				color: #fff;
+				box-shadow: 0 0 5px 5px rgba(0,0,0,0.4);
+			}
+		}
+	}
+
+	main{
+		@include mq(){
+			padding:0 20px;
+		}
+	}
+}
+
+/*------------------------------------*\
+    IMAGES
+\*------------------------------------*/
+
+@import "wp_setting";

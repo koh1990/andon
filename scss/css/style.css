@@ -1,0 +1,749 @@
+/*
+	Theme Name: andon
+	Author: andon
+*/
+/*------------------------------------*\
+    RESET
+\*------------------------------------*/
+/* global box-sizing */
+*, *:after, *:before {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* clear */
+.clear {
+  *zoom: 1;
+}
+
+.clear:before {
+  content: ' ';
+  display: block;
+}
+
+.clear:after {
+  content: ' ';
+  display: block;
+  clear: both;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: bottom;
+}
+
+img[src$=".svg"] {
+  width: 100%;
+  height: auto;
+}
+
+a {
+  color: #444;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #444;
+  outline: 0;
+}
+
+a:focus {
+  outline: 0;
+}
+
+a:active {
+  outline: 0;
+}
+
+input:focus {
+  outline: 0;
+  border: 1px solid #04A4CC;
+}
+
+h1, h2, h3, h4, h5, p, table, ul, ol, dl {
+  margin: 0;
+  padding: 0;
+}
+
+.easing, #nav, #toggle, #toggle span, .service .content > .works > div > a > figure > img, .service .content > .works > div > a > figure > figcaption, .contact__area .wpcf7-submit {
+  -webkit-transition: 0.4s cubic-bezier(0.81, 0.56, 0.85, 0.59);
+  -moz-transition: 0.4s cubic-bezier(0.81, 0.56, 0.85, 0.59);
+  transition: 0.4s cubic-bezier(0.81, 0.56, 0.85, 0.59);
+}
+
+/* html element 62.5% font-size for REM use */
+html {
+  font-size: 62.5%;
+  background: #1f313c;
+}
+
+@media only screen and (max-width: 414px) {
+  html {
+    font-size: 50%;
+  }
+}
+
+body {
+  font: 400 18px/1.6 "acumin-pro", "kozuka-gothic-pro", sans-serif;
+  color: #444;
+}
+
+/*------------------------------------*\
+    STRUCTURE
+\*------------------------------------*/
+/* wrapper */
+.wrapper {
+  position: relative;
+  min-width: 1050px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    min-width: 0;
+  }
+}
+
+#header {
+  font-size: 1.9rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  margin: 0 auto;
+  line-height: 1;
+  z-index: 999;
+}
+
+#header .inner {
+  position: relative;
+  height: 100%;
+}
+
+#nav {
+  position: fixed;
+  background: #1f313c;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding: 80px 0 0;
+  z-index: 10;
+  visibility: hidden;
+  opacity: 0;
+}
+
+#nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  top: 0;
+  right: 0;
+  font-size: 2rem;
+}
+
+#nav ul li {
+  display: block;
+  position: relative;
+  text-align: center;
+}
+
+#nav ul li a {
+  width: 100%;
+  display: block;
+  color: #fff;
+  padding: 18px 0;
+}
+
+/* Toggle Button */
+#toggle {
+  display: block;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 34px;
+  height: 36px;
+  cursor: pointer;
+  z-index: 101;
+}
+
+#toggle div {
+  position: relative;
+}
+
+#toggle span {
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background: #fff;
+  left: 0;
+}
+
+#toggle span:nth-child(1) {
+  top: 0;
+}
+
+#toggle span:nth-child(2) {
+  top: 10px;
+}
+
+#toggle span:nth-child(3) {
+  top: 20px;
+}
+
+.active #toggle span:nth-child(1) {
+  top: 10px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.active #toggle span:nth-child(2) {
+  width: 0;
+  left: 50%;
+}
+
+.active #toggle span:nth-child(3) {
+  top: 10px;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.active #nav {
+  /* #nav top + #spHead height */
+  visibility: visible;
+  opacity: 1;
+}
+
+main.under {
+  max-width: 1050px;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.mv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.mv .logo {
+  width: 180px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.under .mv {
+  height: 500px;
+}
+
+.category .mv {
+  height: 500px;
+}
+
+.intro {
+  width: 100%;
+  margin: 150px 0 300px;
+}
+
+@media only screen and (max-width: 768px) {
+  .intro {
+    padding: 0 20px;
+  }
+}
+
+.intro__txt {
+  width: 480px;
+  height: auto;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .intro__txt {
+    width: 100%;
+    max-width: 480px;
+  }
+}
+
+.service {
+  position: relative;
+  width: 100%;
+}
+
+.service .content {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.service .content > .works {
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+}
+
+.service .content > .works > div {
+  display: inline-block;
+  width: 25%;
+  height: auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .service .content > .works > div {
+    width: 50%;
+  }
+}
+
+.service .content > .works > div > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.service .content > .works > div > a > figure {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.service .content > .works > div > a > figure > img {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+.service .content > .works > div > a > figure > figcaption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background: rgba(31, 49, 60, 0.8);
+  opacity: 0;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+}
+
+.service .content > .works > div > a > figure > figcaption div {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+}
+
+.service .content > .works > div > a > figure > figcaption div .cat__name {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+
+.service .content > .works > div > a > figure > figcaption div .date {
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.service .content > .works > div > a > figure:hover img {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.service .content > .works > div > a > figure:hover figcaption {
+  opacity: 1;
+}
+
+.cat__title {
+  color: #fff;
+  text-align: center;
+  margin: 0 0 80px;
+}
+
+.footer {
+  width: 100%;
+  height: auto;
+}
+
+.footer > div:first-of-type {
+  width: 100%;
+  max-width: 1050px;
+  height: auto;
+  margin: 0 auto;
+  padding: 300px 0 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .footer > div:first-of-type {
+    padding: 100px 0 10px;
+  }
+}
+
+.footer > div address {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  font-style: normal;
+  margin: 0 auto 120px;
+}
+
+@media only screen and (max-width: 768px) {
+  .footer > div address {
+    justify-content: center;
+    flex-flow: column wrap;
+    padding: 0 20px;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .footer > div address {
+    width: 100%;
+  }
+}
+
+.footer > div address div {
+  display: inline-block;
+  width: 45%;
+  height: auto;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 30px;
+}
+
+@media only screen and (max-width: 768px) {
+  .footer > div address div {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .footer > div address div:first-of-type {
+    margin: 0 auto 40px;
+  }
+}
+
+.footer > div address div h3 {
+  font-size: 1.8rem;
+  line-height: 2;
+}
+
+.footer > div address div p {
+  font-size: 1.2rem;
+}
+
+.footer > div address div p a {
+  color: #fff;
+}
+
+.footer > div .copyright {
+  font-size: 1.6rem;
+  color: #fff;
+  text-align: center;
+}
+
+.footer #map {
+  width: 100%;
+  height: 350px;
+}
+
+/*------------------------------------*\
+    PAGES
+\*------------------------------------*/
+.single {
+  color: #fff;
+}
+
+.single .wrapper {
+  min-width: 0;
+}
+
+.single .wrapper article h1 {
+  font-size: 2rem;
+  margin: 40px 0 20px;
+}
+
+.single .wrapper article p {
+  font-size: 1.6rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .single main {
+    padding: 0 20px;
+  }
+}
+
+.contact {
+  color: #fff;
+}
+
+@media only screen and (max-width: 768px) {
+  .contact {
+    position: 0 20px;
+  }
+}
+
+.contact .wrapper h1 {
+  text-align: center;
+  margin: 0 0 80px;
+}
+
+.contact__area {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.contact__area table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 60px;
+}
+
+.contact__area table th {
+  width: 40%;
+  padding: 10px 0;
+  text-align: left;
+  vertical-align: top;
+}
+
+@media only screen and (max-width: 768px) {
+  .contact__area table th {
+    display: block;
+    width: 100%;
+    padding: 10px 0 0;
+  }
+}
+
+.contact__area table td {
+  width: 60%;
+  padding: 15px 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .contact__area table td {
+    display: block;
+    width: 100%;
+    padding: 15px 0 20px;
+  }
+}
+
+.contact__area table td .wpcf7-form-control {
+  width: 100%;
+  border: none;
+  outline: 0;
+  padding: 5px 10px;
+}
+
+.contact__area table td .wpcf7-form-control:focus {
+  outline: 0;
+}
+
+.contact__area table + p {
+  display: block;
+}
+
+.contact__area .wpcf7-submit {
+  display: block;
+  width: 100%;
+  max-width: 150px;
+  height: 60px;
+  border: none;
+  outline: 0;
+  background: #fff;
+  color: #1f313c;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 auto;
+}
+
+.contact__area .wpcf7-submit:hover {
+  background: #1f313c;
+  color: #fff;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4);
+}
+
+@media only screen and (max-width: 768px) {
+  .contact main {
+    padding: 0 20px;
+  }
+}
+
+/*------------------------------------*\
+    IMAGES
+\*------------------------------------*/
+/*------------------------------------*\
+    MISC
+\*------------------------------------*/
+::selection {
+  background: #1f313c;
+  text-shadow: none;
+}
+
+::-webkit-selection {
+  background: #1f313c;
+  text-shadow: none;
+}
+
+::-moz-selection {
+  background: #1f313c;
+  text-shadow: none;
+}
+
+/*------------------------------------*\
+    WORDPRESS CORE
+\*------------------------------------*/
+.alignnone {
+  margin: 5px 20px 20px 0;
+}
+
+.aligncenter,
+div.aligncenter {
+  display: block;
+  margin: 5px auto 5px auto;
+}
+
+.alignright {
+  float: right;
+  margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0;
+}
+
+a img.alignright {
+  float: right;
+  margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {
+  margin: 5px 20px 20px 0;
+}
+
+a img.alignleft {
+  float: left;
+  margin: 5px 20px 20px 0;
+}
+
+a img.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wp-caption {
+  background: #FFF;
+  border: 1px solid #F0F0F0;
+  max-width: 96%;
+  padding: 5px 3px 10px;
+  text-align: center;
+}
+
+.wp-caption.alignnone {
+  margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignleft {
+  margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignright {
+  margin: 5px 0 20px 20px;
+}
+
+.wp-caption img {
+  border: 0 none;
+  height: auto;
+  margin: 0;
+  max-width: 98.5%;
+  padding: 0;
+  width: auto;
+}
+
+.wp-caption .wp-caption-text {
+  font-size: 11px;
+  line-height: 17px;
+  margin: 0;
+  padding: 0 4px 5px;
+}
+
+.gallery-caption {
+  font-size: 11px;
+  line-height: 17px;
+  margin: 0;
+  padding: 0 4px 5px;
+}
+
+/*------------------------------------*\
+    PRINT
+\*------------------------------------*/
+@media print {
+  * {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+  pre, blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tr, img {
+    page-break-inside: avoid;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  @page {
+    margin: 0.5cm;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}

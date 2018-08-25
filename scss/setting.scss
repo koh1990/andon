@@ -1,0 +1,9 @@
+$maincolor: #1f313c;
+
+.easing{
+	-webkit-transition: .4s cubic-bezier(.81,.56,.85,.59);
+	-moz-transition: .4s cubic-bezier(.81,.56,.85,.59);
+	transition: .4s cubic-bezier(.81,.56,.85,.59);
+}
+
+$number: 1, 2, 3, 4, 5, 6;
