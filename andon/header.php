@@ -29,64 +29,74 @@
 
 	</head>
 	<body <?php body_class(); ?>>
-
-		<!-- wrapper -->
-		<div class="wrapper">
-
-			<!-- header -->
-			<header id="header" class="clear" v-bind:class='{active:isActive}' role="banner">
-				<div class="inner">
-					<div id="toggle" v-on:click='isActive=!isActive'>
-						<div>
-							<span></span>
-							<span></span>
-							<span></span>
-						</div>
-					</div>
-					<nav id="nav" role="navigation">
-						<ul>
-							<li>
-								<a href="<?php echo home_url(); ?>">
-									top
-								</a>
-							</li>
-							<li>
-								<a href="<?php echo home_url(); ?>/about">
-									about
-								</a>
-							</li>
-							<li>
-								<a href="<?php echo home_url(); ?>/archives/category/design">
-									design
-								</a>
-							</li>
-							<li>
-								<a href="<?php echo home_url(); ?>/archives/category/web">
-									web
-								</a>
-							</li>
-							<li>
-								<a href="<?php echo home_url(); ?>/archives/category/movie">
-									movie
-								</a>
-							</li>
-							<li>
-								<a href="<?php echo home_url(); ?>/archives/category/space">
-									space
-								</a>
-							</li>
-							<li>
-								<a href="<?php echo home_url(); ?>/archives/category/product">
-									product
-								</a>
-							</li>
-							<li>
-								<a href="<?php echo home_url(); ?>/contact">
-									contact
-								</a>
-							</li>
-						</ul>
-					</nav>
+		<div id="app" v-bind:class='{active:isActive}'>
+			<transition name="fade">
+				<div class="loading" v-show="loading">
+					<img src="<?php echo get_template_directory_uri(); ?>/img/ico_loading.svg" alt="loading">
 				</div>
-			</header>
-			<!-- /header -->
+			</transition>
+			<!-- wrapper -->
+			<div class="wrapper" v-show="!loading">
+				<!-- header -->
+				<header id="header" class="clear" role="banner">
+					<div class="inner">
+						<div id="toggle" v-on:click='isActive=!isActive'>
+							<div>
+								<span></span>
+								<span></span>
+								<span></span>
+							</div>
+						</div>
+						<a href="https://www.facebook.com/andonoffice/" id="facebook" target="_blank">
+							<img src="<?php echo get_template_directory_uri(); ?>/img/ico_facebook.svg" alt="faebook">
+						</a>
+						<a href="<?php echo home_url(); ?>/blog" id="blog" target="_blank">
+							<img src="<?php echo get_template_directory_uri(); ?>/img/ico_blog.svg" alt="Blog">
+						</a>
+						<nav id="nav" role="navigation">
+							<ul>
+								<li>
+									<a href="<?php echo home_url(); ?>">
+										TOP
+									</a>
+								</li>
+								<li>
+									<a href="<?php echo home_url(); ?>/about">
+										ABOUT
+									</a>
+								</li>
+								<li>
+									<a href="<?php echo home_url(); ?>/archives/category/design">
+										DESIGN
+									</a>
+								</li>
+								<li>
+									<a href="<?php echo home_url(); ?>/archives/category/web">
+										WEB
+									</a>
+								</li>
+								<li>
+									<a href="<?php echo home_url(); ?>/archives/category/movie">
+										MOVIE
+									</a>
+								</li>
+								<li>
+									<a href="<?php echo home_url(); ?>/archives/category/space">
+										SPACE
+									</a>
+								</li>
+								<li>
+									<a href="<?php echo home_url(); ?>/archives/category/product">
+										PRODUCT
+									</a>
+								</li>
+								<li>
+									<a href="<?php echo home_url(); ?>/contact">
+										CONTACT
+									</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</header>
+				<!-- /header -->

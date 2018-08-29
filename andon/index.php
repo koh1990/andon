@@ -20,7 +20,7 @@
 			<div class="content">
 				<?php
 				   $newslist = get_posts( array(
-				  'posts_per_page' => 18
+				  'posts_per_page' => 48
 				  ));
 				   if( $newslist ):
 				?>

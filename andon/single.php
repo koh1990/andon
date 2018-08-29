@@ -52,6 +52,15 @@
 
 		</section>
 		<!-- /section -->
+		<div class="paging">
+			<?php if (get_next_post()):?>
+			    <div class="next"><?php next_post_link('< %link','next',false); ?></div>
+			<?php endif; ?>
+
+			<?php if (get_previous_post()):?>
+			    <div class="prev"><?php previous_post_link('%link >','prev',false); ?></div>
+			<?php endif; ?>
+		</div>
 	</main>
 
 <?php get_footer(); ?>

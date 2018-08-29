@@ -1,8 +1,6 @@
 <?php
 /*
- *  Author: Todd Motto | @toddmotto
- *  URL: html5blank.com | @html5blank
- *  Custom functions, support, custom post types and more.
+ *  Author: andon
  */
 
 /*------------------------------------*\
@@ -209,7 +207,7 @@ function html5wp_pagination()
 // Custom Excerpts
 function html5wp_index($length) // Create 20 Word Callback for Index page Excerpts, call using html5wp_excerpt('html5wp_index');
 {
-    return 20;
+    return 60;
 }
 
 // Create 40 Word Callback for Custom Post Excerpts, call using html5wp_excerpt('html5wp_custom_post');
@@ -239,7 +237,7 @@ function html5wp_excerpt($length_callback = '', $more_callback = '')
 function html5_blank_view_article($more)
 {
     global $post;
-    return '... <a class="view-article" href="' . get_permalink($post->ID) . '">' . __('View Article', 'html5blank') . '</a>';
+    return '... <a class="view-article" href="' . get_permalink($post->ID) . '">' . __('more', 'html5blank') . '</a>';
 }
 
 // Remove Admin bar
@@ -333,6 +331,7 @@ add_action('wp_print_scripts', 'html5blank_conditional_scripts'); // Add Conditi
 add_action('get_header', 'enable_threaded_comments'); // Enable Threaded Comments
 add_action('wp_enqueue_scripts', 'html5blank_styles'); // Add Theme Stylesheet
 add_action('init', 'register_html5_menu'); // Add HTML5 Blank Menu
+add_action('init', 'create_post_type_html5'); // Add our HTML5 Blank Custom Post Type
 add_action('widgets_init', 'my_remove_recent_comments_style'); // Remove inline Recent Comment Styles from wp_head()
 add_action('init', 'html5wp_pagination'); // Add our HTML5 Pagination
 
@@ -377,6 +376,57 @@ add_shortcode('html5_shortcode_demo_2', 'html5_shortcode_demo_2'); // Place [htm
 
 // Shortcodes above would be nested like this -
 // [html5_shortcode_demo] [html5_shortcode_demo_2] Here's the page title! [/html5_shortcode_demo_2] [/html5_shortcode_demo]
+
+/*------------------------------------*\
+    Custom Post Types
+\*------------------------------------*/
+// アイキャッチ画像を有効
+add_theme_support('post-thumbnails');   // カスタム投稿タイプ example で thumbnail を使うので追記
+
+// カスタム投稿タイプ作成
+function create_post_type_html5()
+{
+    register_post_type('blog', // Register Custom Post Type
+        array(
+        'labels' => array(
+            'name' => __('ブログ', 'html5blank'), // Rename these to suit
+            'singular_name' => __('ブログ', 'html5blank'),
+            'add_new' => __('新規追加', 'html5blank'),
+            'add_new_item' => __('新規追加', 'html5blank'),
+            'edit' => __('編集', 'html5blank'),
+            'edit_item' => __('ブログを編集', 'html5blank'),
+            'new_item' => __('ブログ', 'html5blank'),
+            'view' => __('ブログを表示', 'html5blank'),
+            'view_item' => __('ブログを表示', 'html5blank'),
+            'search_items' => __('ブログを探す', 'html5blank'),
+            'not_found' => __('ブログが見当たりません', 'html5blank'),
+            'not_found_in_trash' => __('ブログが見当たりません', 'html5blank')
+        ),
+        'public' => true,
+        'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
+        'has_archive' => true,
+        'menu_position' => 5,
+        'supports' => array(
+            'title',
+            'editor',
+            'thumbnail',
+            'revisions',
+            'comments'
+        ),
+        'rewrite' => array('with_front' => false)
+    ));
+
+    register_taxonomy(
+        'blogcat', /* 分類名 */
+        'blog', /* このタクソノミーを使う投稿タイプ */
+        array(
+            'label' => 'ブログカテゴリー', /* ダッシュボードに表示する名前 */
+            'hierarchical' => true,   /* カテゴリーの場合はtrue */
+            'query_var' => true, /* 調べたけどよく分からん。でもtrueでいいらしい */
+            'rewrite' => true /* パーマリンクのリライトの許可 */
+        )
+    );
+}
 
 /*------------------------------------*\
 	ShortCode Functions
@@ -437,5 +487,24 @@ function replaceImagePath($arg) {
     return $content;
 }  
 add_action('the_content', 'replaceImagePath');
+
+
+add_filter( 'post_type_link', 'my_post_type_link', 1, 2 );
+function my_post_type_link( $link, $post ){
+    if ( 'blog' === $post->post_type ) {
+        return home_url( '/blog/' . $post->ID );
+    } else {
+        return $link;
+    }
+}
+
+add_filter( 'rewrite_rules_array', 'my_rewrite_rules_array' );
+function my_rewrite_rules_array( $rules ) {
+    $new_rules = array( 
+        'blog/([0-9]+)/?$' => 'index.php?post_type=blog&p=$matches[1]',
+    );
+
+    return $new_rules + $rules;
+}
 
 ?>
